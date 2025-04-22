@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var sprite_2d: Sprite2D = $sprite_2d_parent/Sprite2D
+@onready var sprite_2d_parent: Node2D = $sprite_2d_parent
 
 var animation_speed: int = 3
 var directions: Dictionary[String, Vector2] = {
@@ -31,8 +32,12 @@ func move(direction: String) -> void:
 			position + directions[direction] * tile_size,
 			1.0/animation_speed,
 		).set_trans(Tween.TRANS_SINE)
+		
 		is_moving = true
 		sprite_2d.frame += 1
+		sprite_2d_parent.look_at(self.position + directions[direction])
+		
 		await tween.finished
+		
 		is_moving = false
 		sprite_2d.frame -= 1
