@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7btmjr06sn4f"]
+
+[ext_resource type="Script" uid="uid://ixnhc8frsklc" path="res://entities/log/log.gd" id="1_noew5"]
+[ext_resource type="Script" uid="uid://dupxy5j8xe735" path="res://common/platform/platform.gd" id="2_2ibps"]
+[ext_resource type="Texture2D" uid="uid://c7mk514dc0ygx" path="res://entities/log/log_spritesheet.png" id="2_t38qg"]
+[ext_resource type="Script" uid="uid://b13fuwtgjl6ye" path="res://common/spawnable/spawnable_2d.gd" id="3_t38qg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3k0b"]
+size = Vector2(48, 14)
+
+[node name="Log" type="Node2D"]
+script = ExtResource("1_noew5")
+
+[node name="Platform" type="Area2D" parent="." node_paths=PackedStringArray("root_node")]
+script = ExtResource("2_2ibps")
+direction = Vector2(1, 0)
+root_node = NodePath("..")
+speed = 32
+metadata/_custom_type_script = "uid://dupxy5j8xe735"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+shape = SubResource("RectangleShape2D_h3k0b")
+
+[node name="small" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="small"]
+texture = ExtResource("2_t38qg")
+
+[node name="Spawnable2D" type="Node2D" parent="." node_paths=PackedStringArray("root_node")]
+script = ExtResource("3_t38qg")
+root_node = NodePath("..")
+metadata/_custom_type_script = "uid://b13fuwtgjl6ye"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.43051e-06, 1.19209e-07)
+scale = Vector2(2.4, 0.7)
