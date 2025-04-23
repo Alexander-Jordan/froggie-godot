@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfytpfgq33dit"]
+
+[ext_resource type="Script" uid="uid://b3kkwqgk5lhl2" path="res://entities/turtle/turtles.gd" id="1_o2epm"]
+[ext_resource type="PackedScene" uid="uid://mrcnga0fota8" path="res://entities/turtle/turtle.tscn" id="2_b11ci"]
+[ext_resource type="Script" uid="uid://b13fuwtgjl6ye" path="res://common/spawnable/spawnable_2d.gd" id="3_lht27"]
+
+[node name="TurtlesTriple" type="Node2D"]
+script = ExtResource("1_o2epm")
+speed = 64
+
+[node name="Turtle" parent="." instance=ExtResource("2_b11ci")]
+position = Vector2(8, 0)
+
+[node name="Turtle2" parent="." instance=ExtResource("2_b11ci")]
+position = Vector2(24, 0)
+
+[node name="Turtle3" parent="." instance=ExtResource("2_b11ci")]
+position = Vector2(40, 0)
+
+[node name="Spawnable2D" type="Node2D" parent="." node_paths=PackedStringArray("root_node")]
+script = ExtResource("3_lht27")
+root_node = NodePath("..")
+direction = Vector2(-1, 0)
+metadata/_custom_type_script = "uid://b13fuwtgjl6ye"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(23.5, 1.19209e-07)
+scale = Vector2(2.35, 0.7)

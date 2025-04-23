@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://mrcnga0fota8"]
+
+[ext_resource type="Texture2D" uid="uid://duv0tblnu3m8h" path="res://entities/turtle/turtle.png" id="3_7itic"]
+
+[node name="Turtle" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_7itic")
+hframes = 3

@@ -1,4 +1,4 @@
-class_name Car extends Node2D
+class_name Turtles extends Node2D
 
 @export var speed: int = 100
 

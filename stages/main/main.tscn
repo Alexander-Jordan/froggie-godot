@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://4e0wub1b01en"]
+[gd_scene load_steps=17 format=4 uid="uid://4e0wub1b01en"]
 
 [ext_resource type="Script" uid="uid://cgikt5vdhkago" path="res://common/destruct/destructor_2d.gd" id="1_3f6tk"]
 [ext_resource type="PackedScene" uid="uid://d16o63s23utck" path="res://entities/player/frog.tscn" id="1_60rri"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://d1pqdk0txx4e" path="res://entities/log/log_long.tscn" id="4_3f6tk"]
 [ext_resource type="Script" uid="uid://bb68e0iv2mymb" path="res://entities/car/car_spawner.gd" id="5_no1gd"]
 [ext_resource type="PackedScene" uid="uid://ba7wo0a6aafo3" path="res://entities/car/car.tscn" id="6_3f6tk"]
+[ext_resource type="Script" uid="uid://b4y31hpbroh8v" path="res://entities/turtle/turtles_spawner.gd" id="6_axbkc"]
+[ext_resource type="PackedScene" uid="uid://bnjg8epjxuhgs" path="res://entities/turtle/turtles_double.tscn" id="7_l7y0w"]
+[ext_resource type="PackedScene" uid="uid://cfytpfgq33dit" path="res://entities/turtle/turtles_triple.tscn" id="8_drn0y"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3f6tk"]
 normal = Vector2(0, 1)
@@ -91,6 +94,26 @@ spawnable_scene = ExtResource("2_4vbm2")
 metadata/_custom_type_script = "uid://vy5p8gyicui5"
 
 [node name="Timer" type="Timer" parent="log_spawners/LogSpawner4"]
+
+[node name="turtles_spawners" type="Node" parent="."]
+
+[node name="TurtlesSpawner" type="Node2D" parent="turtles_spawners"]
+script = ExtResource("6_axbkc")
+spawn_point = Vector2(256, 56)
+time = 1.5
+spawnable_scene = ExtResource("7_l7y0w")
+metadata/_custom_type_script = "uid://b4y31hpbroh8v"
+
+[node name="Timer" type="Timer" parent="turtles_spawners/TurtlesSpawner"]
+
+[node name="TurtlesSpawner2" type="Node2D" parent="turtles_spawners"]
+script = ExtResource("6_axbkc")
+spawn_point = Vector2(256, 104)
+time = 1.5
+spawnable_scene = ExtResource("8_drn0y")
+metadata/_custom_type_script = "uid://b4y31hpbroh8v"
+
+[node name="Timer" type="Timer" parent="turtles_spawners/TurtlesSpawner2"]
 
 [node name="car_spawners" type="Node" parent="."]
 
