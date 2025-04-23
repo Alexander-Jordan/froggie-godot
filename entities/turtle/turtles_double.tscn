@@ -1,12 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnjg8epjxuhgs"]
+[gd_scene load_steps=6 format=3 uid="uid://bnjg8epjxuhgs"]
 
 [ext_resource type="Script" uid="uid://b3kkwqgk5lhl2" path="res://entities/turtle/turtles.gd" id="1_nwurn"]
 [ext_resource type="PackedScene" uid="uid://mrcnga0fota8" path="res://entities/turtle/turtle.tscn" id="1_xrapm"]
 [ext_resource type="Script" uid="uid://b13fuwtgjl6ye" path="res://common/spawnable/spawnable_2d.gd" id="2_nwurn"]
+[ext_resource type="Script" uid="uid://dupxy5j8xe735" path="res://common/platform/platform.gd" id="2_wbujy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76q0e"]
+size = Vector2(31, 14)
 
 [node name="TurtlesDouble" type="Node2D"]
 script = ExtResource("1_nwurn")
+
+[node name="Platform" type="Area2D" parent="." node_paths=PackedStringArray("root_node")]
+script = ExtResource("2_wbujy")
+root_node = NodePath("..")
 speed = 32
+metadata/_custom_type_script = "uid://dupxy5j8xe735"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+position = Vector2(15.5, 0)
+shape = SubResource("RectangleShape2D_76q0e")
 
 [node name="Turtle" parent="." instance=ExtResource("1_xrapm")]
 position = Vector2(8, 0)
@@ -17,7 +30,6 @@ position = Vector2(24, 0)
 [node name="Spawnable2D" type="Node2D" parent="." node_paths=PackedStringArray("root_node")]
 script = ExtResource("2_nwurn")
 root_node = NodePath("..")
-direction = Vector2(-1, 0)
 metadata/_custom_type_script = "uid://b13fuwtgjl6ye"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

@@ -169,9 +169,10 @@ metadata/_custom_type_script = "uid://bb68e0iv2mymb"
 
 [node name="Timer" type="Timer" parent="car_spawners/CarSpawner6"]
 
-[node name="Frog" parent="." instance=ExtResource("1_60rri")]
+[node name="Frog" parent="." node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("1_60rri")]
 z_index = 1
 position = Vector2(128, 232)
+tile_map_layer = NodePath("../TileMapLayer")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-8, 0)

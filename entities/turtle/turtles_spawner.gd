@@ -1,6 +1,5 @@
 class_name TurtlesSpawner extends Spawner2D
 
-@export var direction: Vector2 = Vector2(-1, 0)
 @export var spawn_point: Vector2 = Vector2.ZERO
 @export var time: float = 10.0
 
@@ -12,4 +11,4 @@ func _ready() -> void:
 	timer.timeout.connect(spawn_log)
 
 func spawn_log() -> void:
-	spawn(spawn_point, direction)
+	spawn(spawn_point)
