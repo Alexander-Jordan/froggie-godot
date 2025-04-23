@@ -1,49 +1,68 @@
-[gd_scene load_steps=11 format=4 uid="uid://4e0wub1b01en"]
+[gd_scene load_steps=14 format=4 uid="uid://4e0wub1b01en"]
 
+[ext_resource type="Script" uid="uid://cgikt5vdhkago" path="res://common/destruct/destructor_2d.gd" id="1_3f6tk"]
 [ext_resource type="PackedScene" uid="uid://d16o63s23utck" path="res://entities/player/frog.tscn" id="1_60rri"]
 [ext_resource type="Script" uid="uid://vy5p8gyicui5" path="res://entities/log/log_spawner.gd" id="1_woy08"]
 [ext_resource type="PackedScene" uid="uid://b7btmjr06sn4f" path="res://entities/log/log_small.tscn" id="2_4vbm2"]
 [ext_resource type="TileSet" uid="uid://byjgqjiya7ka6" path="res://stages/main/main_tile_set.tres" id="2_5powy"]
 [ext_resource type="PackedScene" uid="uid://ngkfu052bxp3" path="res://entities/log/log_medium.tscn" id="3_no1gd"]
 [ext_resource type="PackedScene" uid="uid://d1pqdk0txx4e" path="res://entities/log/log_long.tscn" id="4_3f6tk"]
+[ext_resource type="Script" uid="uid://bb68e0iv2mymb" path="res://entities/car/car_spawner.gd" id="5_no1gd"]
+[ext_resource type="PackedScene" uid="uid://ba7wo0a6aafo3" path="res://entities/car/car.tscn" id="6_3f6tk"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_esmli"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3f6tk"]
 normal = Vector2(0, 1)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_72s8x"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_axbkc"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_43f5m"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_802tp"]
 normal = Vector2(1, 0)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_7iyax"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l7y0w"]
 normal = Vector2(-1, 0)
 
 [node name="Main" type="Node2D"]
 
 [node name="boundaries" type="Node" parent="."]
 
-[node name="top" type="StaticBody2D" parent="boundaries"]
+[node name="Destructor2D" type="Area2D" parent="boundaries"]
 position = Vector2(0, 64)
+collision_layer = 2
+script = ExtResource("1_3f6tk")
+disabled = true
+metadata/_custom_type_script = "uid://cgikt5vdhkago"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/top"]
-shape = SubResource("WorldBoundaryShape2D_esmli")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/Destructor2D"]
+shape = SubResource("WorldBoundaryShape2D_3f6tk")
 
-[node name="bottom" type="StaticBody2D" parent="boundaries"]
+[node name="Destructor2D2" type="Area2D" parent="boundaries"]
 position = Vector2(0, 448)
+collision_layer = 2
+script = ExtResource("1_3f6tk")
+disabled = true
+metadata/_custom_type_script = "uid://cgikt5vdhkago"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/bottom"]
-shape = SubResource("WorldBoundaryShape2D_72s8x")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/Destructor2D2"]
+shape = SubResource("WorldBoundaryShape2D_axbkc")
 
-[node name="left" type="StaticBody2D" parent="boundaries"]
+[node name="Destructor2D3" type="Area2D" parent="boundaries"]
+collision_layer = 2
+script = ExtResource("1_3f6tk")
+disabled = true
+metadata/_custom_type_script = "uid://cgikt5vdhkago"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/left"]
-shape = SubResource("WorldBoundaryShape2D_43f5m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/Destructor2D3"]
+shape = SubResource("WorldBoundaryShape2D_802tp")
 
-[node name="right" type="StaticBody2D" parent="boundaries"]
+[node name="Destructor2D4" type="Area2D" parent="boundaries"]
 position = Vector2(256, 0)
+collision_layer = 2
+script = ExtResource("1_3f6tk")
+disabled = true
+metadata/_custom_type_script = "uid://cgikt5vdhkago"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/right"]
-shape = SubResource("WorldBoundaryShape2D_7iyax")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/Destructor2D4"]
+shape = SubResource("WorldBoundaryShape2D_l7y0w")
 
 [node name="log_spawners" type="Node" parent="."]
 
@@ -91,6 +110,100 @@ spawnable_scene = ExtResource("2_4vbm2")
 metadata/_custom_type_script = "uid://vy5p8gyicui5"
 
 [node name="Timer" type="Timer" parent="log_spawners/LogSpawner5"]
+
+[node name="car_spawners" type="Node" parent="."]
+
+[node name="CarSpawner" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+direction = Vector2(-1, 0)
+spawn_point = Vector2(272, 264)
+speed = 75
+time = 2.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner"]
+
+[node name="CarSpawner2" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+spawn_point = Vector2(-16, 280)
+time = 1.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner2"]
+
+[node name="CarSpawner3" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+direction = Vector2(-1, 0)
+spawn_point = Vector2(272, 296)
+speed = 50
+time = 3.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner3"]
+
+[node name="CarSpawner4" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+spawn_point = Vector2(-16, 312)
+speed = 75
+time = 2.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner4"]
+
+[node name="CarSpawner5" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+direction = Vector2(-1, 0)
+spawn_point = Vector2(272, 328)
+time = 1.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner5"]
+
+[node name="CarSpawner6" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+spawn_point = Vector2(-16, 344)
+time = 1.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner6"]
+
+[node name="CarSpawner7" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+direction = Vector2(-1, 0)
+spawn_point = Vector2(272, 360)
+speed = 50
+time = 3.5
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner7"]
+
+[node name="CarSpawner8" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+spawn_point = Vector2(-16, 376)
+speed = 50
+time = 3.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner8"]
+
+[node name="CarSpawner9" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+direction = Vector2(-1, 0)
+spawn_point = Vector2(272, 392)
+speed = 50
+time = 3.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner9"]
 
 [node name="Frog" parent="." instance=ExtResource("1_60rri")]
 z_index = 1

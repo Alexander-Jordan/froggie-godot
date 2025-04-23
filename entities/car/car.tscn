@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://ba7wo0a6aafo3"]
+
+[ext_resource type="Script" uid="uid://wp6xr8gr70g5" path="res://entities/car/car.gd" id="1_yotxw"]
+[ext_resource type="Texture2D" uid="uid://b1qxqk5g7hofv" path="res://entities/car/car_spritesheet.png" id="2_x0apo"]
+[ext_resource type="Script" uid="uid://b13fuwtgjl6ye" path="res://common/spawnable/spawnable_2d.gd" id="3_hk7sx"]
+[ext_resource type="Script" uid="uid://cgikt5vdhkago" path="res://common/destruct/destructor_2d.gd" id="3_qxogl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk7sx"]
+size = Vector2(16, 10)
+
+[node name="Car" type="Node2D"]
+script = ExtResource("1_yotxw")
+
+[node name="Destructor2D" type="Area2D" parent="."]
+script = ExtResource("3_qxogl")
+disabled = true
+metadata/_custom_type_script = "uid://cgikt5vdhkago"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Destructor2D"]
+shape = SubResource("RectangleShape2D_hk7sx")
+
+[node name="Spawnable2D" type="Node2D" parent="." node_paths=PackedStringArray("root_node")]
+script = ExtResource("3_hk7sx")
+root_node = NodePath("..")
+metadata/_custom_type_script = "uid://b13fuwtgjl6ye"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture = ExtResource("2_x0apo")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
