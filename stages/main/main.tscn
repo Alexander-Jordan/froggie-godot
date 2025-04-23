@@ -96,7 +96,8 @@ metadata/_custom_type_script = "uid://vy5p8gyicui5"
 
 [node name="CarSpawner" type="Node2D" parent="car_spawners"]
 script = ExtResource("5_no1gd")
-spawn_point = Vector2(-16, 136)
+direction = Vector2(-1, 0)
+spawn_point = Vector2(272, 136)
 speed = 152
 time = 1.0
 spawnable_scene = ExtResource("6_3f6tk")
@@ -106,8 +107,7 @@ metadata/_custom_type_script = "uid://bb68e0iv2mymb"
 
 [node name="CarSpawner2" type="Node2D" parent="car_spawners"]
 script = ExtResource("5_no1gd")
-direction = Vector2(-1, 0)
-spawn_point = Vector2(272, 152)
+spawn_point = Vector2(-16, 152)
 speed = 50
 time = 3.0
 spawnable_scene = ExtResource("6_3f6tk")
@@ -115,21 +115,12 @@ metadata/_custom_type_script = "uid://bb68e0iv2mymb"
 
 [node name="Timer" type="Timer" parent="car_spawners/CarSpawner2"]
 
-[node name="CarSpawner5" type="Node2D" parent="car_spawners"]
-script = ExtResource("5_no1gd")
-spawn_point = Vector2(-16, 168)
-speed = 200
-time = 2.0
-spawnable_scene = ExtResource("6_3f6tk")
-metadata/_custom_type_script = "uid://bb68e0iv2mymb"
-
-[node name="Timer" type="Timer" parent="car_spawners/CarSpawner5"]
-
 [node name="CarSpawner3" type="Node2D" parent="car_spawners"]
 script = ExtResource("5_no1gd")
 direction = Vector2(-1, 0)
-spawn_point = Vector2(272, 184)
-time = 1.0
+spawn_point = Vector2(272, 168)
+speed = 200
+time = 2.0
 spawnable_scene = ExtResource("6_3f6tk")
 metadata/_custom_type_script = "uid://bb68e0iv2mymb"
 
@@ -137,13 +128,23 @@ metadata/_custom_type_script = "uid://bb68e0iv2mymb"
 
 [node name="CarSpawner4" type="Node2D" parent="car_spawners"]
 script = ExtResource("5_no1gd")
-spawn_point = Vector2(-16, 200)
+spawn_point = Vector2(-16, 184)
+time = 1.0
+spawnable_scene = ExtResource("6_3f6tk")
+metadata/_custom_type_script = "uid://bb68e0iv2mymb"
+
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner4"]
+
+[node name="CarSpawner6" type="Node2D" parent="car_spawners"]
+script = ExtResource("5_no1gd")
+direction = Vector2(-1, 0)
+spawn_point = Vector2(272, 200)
 speed = 75
 time = 2.5
 spawnable_scene = ExtResource("6_3f6tk")
 metadata/_custom_type_script = "uid://bb68e0iv2mymb"
 
-[node name="Timer" type="Timer" parent="car_spawners/CarSpawner4"]
+[node name="Timer" type="Timer" parent="car_spawners/CarSpawner6"]
 
 [node name="Frog" parent="." instance=ExtResource("1_60rri")]
 z_index = 1
