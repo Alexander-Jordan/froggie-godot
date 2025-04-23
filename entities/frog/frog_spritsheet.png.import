@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1038v42c3gfi"
-path="res://.godot/imported/frog_spritsheet.png-7bc9f2b394d5b7df646ab20cde51fd2c.ctex"
+path="res://.godot/imported/frog_spritsheet.png-66cb57909a8db813f34575cb28734366.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/frog_spritsheet.png"
-dest_files=["res://.godot/imported/frog_spritsheet.png-7bc9f2b394d5b7df646ab20cde51fd2c.ctex"]
+source_file="res://entities/frog/frog_spritsheet.png"
+dest_files=["res://.godot/imported/frog_spritsheet.png-66cb57909a8db813f34575cb28734366.ctex"]
 
 [params]
 

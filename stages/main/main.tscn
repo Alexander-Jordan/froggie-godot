@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://4e0wub1b01en"]
 
 [ext_resource type="Script" uid="uid://cgikt5vdhkago" path="res://common/destruct/destructor_2d.gd" id="1_3f6tk"]
-[ext_resource type="PackedScene" uid="uid://d16o63s23utck" path="res://entities/player/frog.tscn" id="1_60rri"]
+[ext_resource type="PackedScene" uid="uid://d16o63s23utck" path="res://entities/frog/frog.tscn" id="1_60rri"]
 [ext_resource type="Script" uid="uid://vy5p8gyicui5" path="res://entities/log/log_spawner.gd" id="1_woy08"]
 [ext_resource type="PackedScene" uid="uid://b7btmjr06sn4f" path="res://entities/log/log_small.tscn" id="2_4vbm2"]
 [ext_resource type="TileSet" uid="uid://byjgqjiya7ka6" path="res://stages/main/main_tile_set.tres" id="2_5powy"]
