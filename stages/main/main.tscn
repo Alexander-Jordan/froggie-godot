@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://4e0wub1b01en"]
+[gd_scene load_steps=11 format=4 uid="uid://4e0wub1b01en"]
 
 [ext_resource type="PackedScene" uid="uid://d16o63s23utck" path="res://entities/player/frog.tscn" id="1_60rri"]
+[ext_resource type="Script" uid="uid://vy5p8gyicui5" path="res://entities/log/log_spawner.gd" id="1_woy08"]
+[ext_resource type="PackedScene" uid="uid://b7btmjr06sn4f" path="res://entities/log/log_small.tscn" id="2_4vbm2"]
 [ext_resource type="TileSet" uid="uid://byjgqjiya7ka6" path="res://stages/main/main_tile_set.tres" id="2_5powy"]
+[ext_resource type="PackedScene" uid="uid://ngkfu052bxp3" path="res://entities/log/log_medium.tscn" id="3_no1gd"]
+[ext_resource type="PackedScene" uid="uid://d1pqdk0txx4e" path="res://entities/log/log_long.tscn" id="4_3f6tk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_esmli"]
 normal = Vector2(0, 1)
@@ -40,6 +44,53 @@ position = Vector2(256, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boundaries/right"]
 shape = SubResource("WorldBoundaryShape2D_7iyax")
+
+[node name="log_spawners" type="Node" parent="."]
+
+[node name="LogSpawner" type="Node2D" parent="log_spawners"]
+script = ExtResource("1_woy08")
+spawn_point = Vector2(-48, 104)
+time = 2.5
+spawnable_scene = ExtResource("3_no1gd")
+metadata/_custom_type_script = "uid://vy5p8gyicui5"
+
+[node name="Timer" type="Timer" parent="log_spawners/LogSpawner"]
+
+[node name="LogSpawner2" type="Node2D" parent="log_spawners"]
+script = ExtResource("1_woy08")
+spawn_point = Vector2(-64, 136)
+time = 5.0
+spawnable_scene = ExtResource("4_3f6tk")
+metadata/_custom_type_script = "uid://vy5p8gyicui5"
+
+[node name="Timer" type="Timer" parent="log_spawners/LogSpawner2"]
+
+[node name="LogSpawner3" type="Node2D" parent="log_spawners"]
+script = ExtResource("1_woy08")
+spawn_point = Vector2(-32, 152)
+time = 2.5
+spawnable_scene = ExtResource("2_4vbm2")
+metadata/_custom_type_script = "uid://vy5p8gyicui5"
+
+[node name="Timer" type="Timer" parent="log_spawners/LogSpawner3"]
+
+[node name="LogSpawner4" type="Node2D" parent="log_spawners"]
+script = ExtResource("1_woy08")
+spawn_point = Vector2(-48, 184)
+time = 2.5
+spawnable_scene = ExtResource("3_no1gd")
+metadata/_custom_type_script = "uid://vy5p8gyicui5"
+
+[node name="Timer" type="Timer" parent="log_spawners/LogSpawner4"]
+
+[node name="LogSpawner5" type="Node2D" parent="log_spawners"]
+script = ExtResource("1_woy08")
+spawn_point = Vector2(-32, 216)
+time = 2.5
+spawnable_scene = ExtResource("2_4vbm2")
+metadata/_custom_type_script = "uid://vy5p8gyicui5"
+
+[node name="Timer" type="Timer" parent="log_spawners/LogSpawner5"]
 
 [node name="Frog" parent="." instance=ExtResource("1_60rri")]
 z_index = 1

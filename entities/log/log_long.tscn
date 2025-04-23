@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1pqdk0txx4e"]
+
+[ext_resource type="Script" uid="uid://ixnhc8frsklc" path="res://entities/log/log.gd" id="1_3j5kb"]
+[ext_resource type="Texture2D" uid="uid://c7mk514dc0ygx" path="res://entities/log/log_spritesheet.png" id="2_o6pfw"]
+[ext_resource type="Script" uid="uid://b13fuwtgjl6ye" path="res://common/spawnable/spawnable_2d.gd" id="3_a8ycp"]
+
+[node name="Log" type="Node2D"]
+script = ExtResource("1_3j5kb")
+speed = 48
+
+[node name="long" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="long"]
+position = Vector2(-48, 0)
+texture = ExtResource("2_o6pfw")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="long"]
+position = Vector2(-32, 0)
+texture = ExtResource("2_o6pfw")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Sprite2D3" type="Sprite2D" parent="long"]
+position = Vector2(-16, 0)
+texture = ExtResource("2_o6pfw")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Sprite2D4" type="Sprite2D" parent="long"]
+texture = ExtResource("2_o6pfw")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Sprite2D5" type="Sprite2D" parent="long"]
+position = Vector2(16, 0)
+texture = ExtResource("2_o6pfw")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Sprite2D6" type="Sprite2D" parent="long"]
+position = Vector2(32, 0)
+texture = ExtResource("2_o6pfw")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="Sprite2D7" type="Sprite2D" parent="long"]
+position = Vector2(48, 0)
+texture = ExtResource("2_o6pfw")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="Spawnable2D" type="Node2D" parent="." node_paths=PackedStringArray("root_node")]
+script = ExtResource("3_a8ycp")
+root_node = NodePath("..")
+direction = Vector2(1, 0)
+metadata/_custom_type_script = "uid://b13fuwtgjl6ye"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-3.8147e-06, 1.19209e-07)
+scale = Vector2(5.6, 0.7)
