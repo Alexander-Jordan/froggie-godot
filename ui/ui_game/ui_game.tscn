@@ -32,16 +32,16 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 8
-text = "LIVES:"
+text = "FROGS:"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="label_lives" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+[node name="label_frogs" type="Label" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 8
-text = "0"
+text = "5"
 vertical_alignment = 1
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
