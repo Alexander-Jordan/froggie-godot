@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmnuv4luee478"]
+[gd_scene load_steps=8 format=3 uid="uid://dmnuv4luee478"]
 
 [ext_resource type="Script" uid="uid://denostvkmgwl6" path="res://entities/lilypad/lilypad.gd" id="1_5h8b7"]
 [ext_resource type="Texture2D" uid="uid://c3t0i6m8xvp0u" path="res://stages/main/level_spritesheet.png" id="2_pndpw"]
 [ext_resource type="Texture2D" uid="uid://d1038v42c3gfi" path="res://entities/frog/frog_spritsheet.png" id="3_pndpw"]
+[ext_resource type="AudioStream" uid="uid://c1leuly3w8qms" path="res://entities/lilypad/safe.wav" id="4_4tg5s"]
+[ext_resource type="Script" uid="uid://bdtjjje4n4emo" path="res://common/random_audio_player_2d.gd" id="4_rksiw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rksiw"]
 size = Vector2(12, 12)
@@ -28,6 +30,12 @@ visible = false
 texture = ExtResource("3_pndpw")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
+
+[node name="RandomAudioPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4tg5s")
+bus = &"sfx"
+script = ExtResource("4_rksiw")
+metadata/_custom_type_script = "uid://bdtjjje4n4emo"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

@@ -1,5 +1,6 @@
 class_name UIGame extends Control
 
+@export var audio_stream_playing: AudioStream
 @export var score_max: int = 10000
 @export var time_max: float = 30.0
 
@@ -10,6 +11,7 @@ class_name UIGame extends Control
 @onready var label_start: Label = $VBoxContainer/Control/menu_start/label_start
 @onready var label_time: Label = $VBoxContainer/HBoxContainer/HBoxContainer4/label_time
 @onready var menu_start: VBoxContainer = $VBoxContainer/Control/menu_start
+@onready var ui_audio_player: UIAudioPlayer = $UIAudioPlayer
 
 var score_current: int = score_max
 var time_current: float = time_max
@@ -41,6 +43,7 @@ func _ready() -> void:
 	GM.state_changed.connect(func(state: GM.State):
 		match state:
 			GM.State.PLAYING:
+				ui_audio_player.play_audio(audio_stream_playing)
 				menu_start.visible = false
 				reset_time()
 			GM.State.OVER:

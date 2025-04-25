@@ -11,11 +11,19 @@ class_name Destructor2D extends Destructable2D
 @export var destroy_on_first_hit: bool = false
 #endregion
 
+signal destructable_entered
+signal destructable_exited
+
 #region FUNCTIONS
 func _ready() -> void:
 	area_entered.connect(func(area: Area2D):
 		if area is Destructable2D:
+			destructable_entered.emit()
 			var new_health = area.destruct(health)
 			health = 0 if destroy_on_first_hit else new_health
+	)
+	area_exited.connect(func(area: Area2D):
+		if area is Destructable2D:
+			destructable_entered.emit()
 	)
 #endregion

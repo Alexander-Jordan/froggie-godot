@@ -1,10 +1,13 @@
 extends Node2D
 
+@export var audio_stream_jump: AudioStream
+@export var audio_stream_water: AudioStream
 @export var spawn_position: Vector2 = Vector2.ZERO
 @export var tile_map_layer: TileMapLayer
 
 @onready var destructable_2d: Destructable2D = $Destructable2D
 @onready var platform_detector: PlatformDetector = $PlatformDetector
+@onready var random_audio_player_2d: RandomAudioPlayer2D = $RandomAudioPlayer2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var sprite_2d: Sprite2D = $sprite_2d_parent/Sprite2D
 @onready var sprite_2d_parent: Node2D = $sprite_2d_parent
@@ -80,6 +83,7 @@ func move(direction: String) -> void:
 		is_moving = true
 		sprite_2d.frame = 1
 		sprite_2d_parent.look_at(self.position + directions[direction])
+		random_audio_player_2d.play_random_audio_and_await_finished([audio_stream_jump])
 		
 		await tween.finished
 		
@@ -90,6 +94,7 @@ func move(direction: String) -> void:
 		match get_tile_type():
 			'water':
 				destructable_2d.destruct(1)
+				random_audio_player_2d.play_random_audio_and_await_finished([audio_stream_water])
 
 func reset() -> void:
 	if tween != null:
