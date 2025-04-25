@@ -3,6 +3,8 @@ class_name UIGame extends Control
 @export var score_max: int = 1000
 @export var time_max: float = 30.0
 
+@onready var button_restart: Button = $VBoxContainer/Control/game_over_screen/HBoxContainer/button_restart
+@onready var game_over_screen: VBoxContainer = $VBoxContainer/Control/game_over_screen
 @onready var label_best: Label = $VBoxContainer/HBoxContainer/HBoxContainer3/label_best
 @onready var label_frogs: Label = $VBoxContainer/HBoxContainer/HBoxContainer/label_frogs
 @onready var label_score: Label = $VBoxContainer/HBoxContainer/HBoxContainer2/label_score
@@ -31,13 +33,17 @@ func _ready() -> void:
 	label_score.text = "%05d" % SS.stats.score
 	label_time.text = "%05d" % score_current
 	
+	button_restart.pressed.connect(func(): GM.state = GM.State.PLAYING)
 	GM.frogs_changed.connect(func(frogs: int): label_frogs.text = "%d" % GM.frogs)
 	GM.lilypad_reached.connect(func(): SS.stats.score += score_current)
 	GM.next_frog.connect(reset_time)
 	GM.state_changed.connect(func(state: GM.State):
 		match state:
-			GM.State.NEW, GM.State.PLAYING:
+			GM.State.PLAYING:
+				game_over_screen.visible = false
 				reset_time()
+			GM.State.OVER:
+				game_over_screen.visible = true
 	)
 	SS.stats.new_highscore.connect(func(highscore: int): label_best.text = "%05d" % highscore)
 	SS.stats.score_changed.connect(func(score: int): label_score.text = "%05d" % score)

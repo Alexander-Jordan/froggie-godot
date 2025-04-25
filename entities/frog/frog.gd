@@ -29,7 +29,7 @@ func _ready() -> void:
 	GM.next_frog.connect(reset)
 	GM.state_changed.connect(func(state: GM.State):
 		match state:
-			GM.State.NEW, GM.State.PLAYING:
+			GM.State.PLAYING:
 				reset()
 			GM.State.OVER:
 				sprite_2d.visible = false

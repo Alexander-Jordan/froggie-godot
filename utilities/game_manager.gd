@@ -1,7 +1,6 @@
 class_name GameManager extends Node
 
 enum State {
-	NEW,
 	PLAYING,
 	OVER,
 }
@@ -18,14 +17,14 @@ var frogs: int = 5:
 			state = State.OVER
 		else:
 			next_frog.emit()
-var state: State = State.NEW:
+var state: State = State.OVER:
 	set(s):
 		if s == state or !State.values().has(s):
 			return
 		state = s
 		state_changed.emit(state)
 		match s:
-			State.NEW, State.PLAYING:
+			State.PLAYING:
 				frogs = FROGS
 				SS.stats.score = 0
 
@@ -35,8 +34,6 @@ signal next_frog
 signal state_changed(state: State)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed('dev_state_new'):
-		state = State.NEW
 	if event.is_action_pressed('dev_state_playing'):
 		state = State.PLAYING
 	if event.is_action_pressed('dev_state_over'):

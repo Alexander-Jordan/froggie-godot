@@ -16,9 +16,9 @@ var occupied: bool = false:
 			GM.frogs -= 1
 
 func _ready() -> void:
-	area_2d.area_entered.connect(func(area: Area2D): occupied = true)
+	area_2d.area_entered.connect(func(_area: Area2D): occupied = true)
 	GM.state_changed.connect(func(state: GM.State):
 		match state:
-			GM.State.NEW:
+			GM.State.PLAYING:
 				occupied = false
 	)
