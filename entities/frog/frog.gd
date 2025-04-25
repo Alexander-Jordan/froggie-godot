@@ -25,13 +25,13 @@ func _ready() -> void:
 	spawn_position = position
 	GM.state = GM.State.PLAYING
 	
-	destructable_2d.destroyed.connect(reset)
+	destructable_2d.destroyed.connect(func(): GM.frogs -= 1)
 	GM.next_frog.connect(reset)
 	GM.state_changed.connect(func(state: GM.State):
 		match state:
-			GM.State.NEW, GM.State.PLAYING:
+			GM.State.PLAYING:
 				reset()
-			GM.State.OVER, GM.State.WIN:
+			GM.State.OVER:
 				sprite_2d.visible = false
 	)
 	platform_detector.platforms_changed.connect(func(platforms: Array[Platform]):
