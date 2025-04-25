@@ -17,15 +17,18 @@ var lilypads_occupied: int = 0:
 		if lo == LILYPADS:
 			state = State.WIN
 		else:
-			next_frog.emit()
+			next_frog.emit(true)
 var state: State = State.NEW:
 	set(s):
 		if s == state or !State.values().has(s):
 			return
 		state = s
 		state_changed.emit(state)
+		match s:
+			State.NEW, State.PLAYING:
+				SS.stats.score = 0
 
-signal next_frog
+signal next_frog(previous_safe: bool)
 signal state_changed(state: State)
 
 func _unhandled_input(event: InputEvent) -> void:

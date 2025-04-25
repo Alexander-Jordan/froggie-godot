@@ -26,9 +26,19 @@ func _process(delta: float) -> void:
 	label_time.text = "%05d" % score_current
 
 func _ready() -> void:
-	GM.next_frog.connect(reset_time)
+	label_best.text = "%05d" % SS.stats.highscore
+	label_score.text = "%05d" % SS.stats.score
+	label_time.text = "%05d" % score_current
+	
+	GM.next_frog.connect(func(previous_safe: bool):
+		if previous_safe:
+			SS.stats.score += score_current
+		reset_time()
+	)
 	GM.state_changed.connect(func(state: GM.State):
 		match state:
 			GM.State.NEW, GM.State.PLAYING:
 				reset_time()
 	)
+	SS.stats.new_highscore.connect(func(highscore: int): label_best.text = "%05d" % highscore)
+	SS.stats.score_changed.connect(func(score: int): label_score.text = "%05d" % score)

@@ -25,8 +25,8 @@ func _ready() -> void:
 	spawn_position = position
 	GM.state = GM.State.PLAYING
 	
-	destructable_2d.destroyed.connect(func(): GM.next_frog.emit())
-	GM.next_frog.connect(reset)
+	destructable_2d.destroyed.connect(func(): GM.next_frog.emit(false))
+	GM.next_frog.connect(func(_previous_safe: bool): reset())
 	GM.state_changed.connect(func(state: GM.State):
 		match state:
 			GM.State.NEW, GM.State.PLAYING:
