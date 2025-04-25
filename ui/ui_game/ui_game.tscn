@@ -23,8 +23,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="game_over_screen" type="VBoxContainer" parent="VBoxContainer/Control"]
-visible = false
+[node name="menu_start" type="VBoxContainer" parent="VBoxContainer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -40,19 +39,16 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="Label" type="Label" parent="VBoxContainer/Control/game_over_screen"]
+[node name="label_start" type="Label" parent="VBoxContainer/Control/menu_start"]
 layout_mode = 2
-text = "GAME OVER"
+text = "PRESS START TO PLAY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control/game_over_screen"]
+[node name="button_start" type="Button" parent="VBoxContainer/Control/menu_start"]
 layout_mode = 2
-
-[node name="button_restart" type="Button" parent="VBoxContainer/Control/game_over_screen/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "RESTART"
+size_flags_horizontal = 4
+text = "START"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 16)

@@ -23,7 +23,6 @@ var tween: Tween = null
 
 func _ready() -> void:
 	spawn_position = position
-	GM.state = GM.State.PLAYING
 	
 	destructable_2d.destroyed.connect(func(): GM.frogs -= 1)
 	GM.next_frog.connect(reset)
