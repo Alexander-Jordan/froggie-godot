@@ -1,6 +1,6 @@
 class_name UIGame extends Control
 
-@export var score_max: int = 1000
+@export var score_max: int = 10000
 @export var time_max: float = 30.0
 
 @onready var button_restart: Button = $VBoxContainer/Control/game_over_screen/HBoxContainer/button_restart
