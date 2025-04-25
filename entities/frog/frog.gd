@@ -44,6 +44,13 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if is_moving or GM.state != GM.State.PLAYING:
 		return
+	if event.is_action_pressed('mouse'):
+		var mouse_direction: Vector2 = event.position - position
+		mouse_direction = mouse_direction.normalized()
+		if absf(mouse_direction.x) > absf(mouse_direction.y):
+			move('left' if sign(mouse_direction.x) < 0 else 'right')
+		else:
+			move('up' if sign(mouse_direction.y) < 0 else 'down')
 	for direction in directions:
 		if event.is_action_pressed(direction):
 			move(direction)
