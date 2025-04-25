@@ -34,7 +34,8 @@ func _ready() -> void:
 			GM.State.PLAYING:
 				reset()
 			GM.State.OVER:
-				sprite_2d.visible = false
+				self.visible = false
+				self.process_mode = Node.PROCESS_MODE_DISABLED
 	)
 	platform_detector.platforms_changed.connect(func(platforms: Array[Platform]):
 		platform = platforms.front() if !platforms.is_empty() else null
@@ -104,4 +105,5 @@ func reset() -> void:
 		is_moving = false
 	position = spawn_position
 	sprite_2d_parent.look_at(self.position + directions.up)
-	sprite_2d.visible = true # this is set to false when the game is over/won
+	self.visible = true
+	self.process_mode = Node.PROCESS_MODE_INHERIT
