@@ -11,10 +11,13 @@ var occupied: bool = false:
 		occupied = o
 		frog_sprite_2d.visible = o
 		collision_shape_2d.set_deferred('disabled', !o)
+		if o:
+			GM.lilypads_occupied += 1
 
 func _ready() -> void:
-	area_2d.area_entered.connect(func(area: Area2D):
-		if area is LilypadDetector:
-			area.detected.emit()
-			occupied = true
+	area_2d.area_entered.connect(func(area: Area2D): occupied = true)
+	GM.state_changed.connect(func(state: GM.State):
+		match state:
+			GM.State.NEW:
+				occupied = false
 	)

@@ -1,15 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://d16o63s23utck"]
+[gd_scene load_steps=7 format=3 uid="uid://d16o63s23utck"]
 
 [ext_resource type="Script" uid="uid://bdekectr7lnpr" path="res://entities/frog/frog.gd" id="1_udvsd"]
 [ext_resource type="Script" uid="uid://wvthhxshywf7" path="res://common/destruct/destructible_2d.gd" id="2_tqehi"]
 [ext_resource type="Texture2D" uid="uid://d1038v42c3gfi" path="res://entities/frog/frog_spritsheet.png" id="2_x5vxf"]
 [ext_resource type="Script" uid="uid://blkxx5b1jgcyn" path="res://common/platform/platform_detector.gd" id="3_ecp8e"]
-[ext_resource type="Script" uid="uid://cxpvf63t11bbu" path="res://entities/lilypad/lilypad_detector.gd" id="3_jtj10"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_182fg"]
-size = Vector2(6, 5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg5n1"]
 size = Vector2(6, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtj10"]
@@ -25,16 +21,6 @@ metadata/_custom_type_script = "uid://wvthhxshywf7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Destructable2D"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_182fg")
-
-[node name="LilypadDetector" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("3_jtj10")
-metadata/_custom_type_script = "uid://cxpvf63t11bbu"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LilypadDetector"]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_rg5n1")
 
 [node name="PlatformDetector" type="Area2D" parent="." node_paths=PackedStringArray("root_node")]
 script = ExtResource("3_ecp8e")
