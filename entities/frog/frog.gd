@@ -4,6 +4,7 @@ extends Node2D
 @export var tile_map_layer: TileMapLayer
 
 @onready var destructable_2d: Destructable2D = $Destructable2D
+@onready var lilypad_detector: LilypadDetector = $LilypadDetector
 @onready var platform_detector: PlatformDetector = $PlatformDetector
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var sprite_2d: Sprite2D = $sprite_2d_parent/Sprite2D
@@ -25,6 +26,7 @@ func _ready() -> void:
 	spawn_position = position
 	
 	destructable_2d.destroyed.connect(reset)
+	lilypad_detector.detected.connect(reset)
 	platform_detector.platforms_changed.connect(func(platforms: Array[Platform]):
 		platform = platforms.front() if !platforms.is_empty() else null
 	)
@@ -40,12 +42,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed(direction):
 			move(direction)
 
-func get_destructor_value_from_tile_data() -> int:
+func get_tile_type() -> String:
 	if tile_map_layer == null or platform != null:
-		return 0
+		return ''
 	
-	var tile_data: TileData = tile_map_layer.get_cell_tile_data(tile_map_layer.local_to_map(position))
-	return tile_data.get_custom_data('destructor') if tile_data.has_custom_data('destructor') else 0
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(tile_map_layer.local_to_map(tile_map_layer.to_local(position)))
+	return tile_data.get_custom_data('type') if tile_data.has_custom_data('type') else ''
 
 func move(direction: String) -> void:
 	ray_cast_2d.target_position = directions[direction] * tile_size
@@ -65,10 +67,16 @@ func move(direction: String) -> void:
 		
 		await tween.finished
 		
-		destructable_2d.destruct(get_destructor_value_from_tile_data())
 		tween = null
 		is_moving = false
 		sprite_2d.frame = 0
+		
+		match get_tile_type():
+			'lilypad':
+				print('test')
+				reset()
+			'water':
+				destructable_2d.destruct(1)
 
 func reset() -> void:
 	if tween != null:
