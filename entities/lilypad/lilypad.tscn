@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmnuv4luee478"]
+
+[ext_resource type="Script" uid="uid://denostvkmgwl6" path="res://entities/lilypad/lilypad.gd" id="1_5h8b7"]
+[ext_resource type="Texture2D" uid="uid://c3t0i6m8xvp0u" path="res://stages/main/level_spritesheet.png" id="2_pndpw"]
+[ext_resource type="Texture2D" uid="uid://d1038v42c3gfi" path="res://entities/frog/frog_spritsheet.png" id="3_pndpw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rksiw"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pndpw"]
+size = Vector2(16, 16)
+
+[node name="Lilypad" type="Node2D"]
+script = ExtResource("1_5h8b7")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rksiw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_pndpw")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="frog_sprite_2d" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_pndpw")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_pndpw")
+disabled = true

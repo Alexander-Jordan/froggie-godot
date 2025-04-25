@@ -23,8 +23,17 @@ var tween: Tween = null
 
 func _ready() -> void:
 	spawn_position = position
+	GM.state = GM.State.PLAYING
 	
 	destructable_2d.destroyed.connect(reset)
+	GM.next_frog.connect(reset)
+	GM.state_changed.connect(func(state: GM.State):
+		match state:
+			GM.State.NEW, GM.State.PLAYING:
+				reset()
+			GM.State.OVER, GM.State.WIN:
+				sprite_2d.visible = false
+	)
 	platform_detector.platforms_changed.connect(func(platforms: Array[Platform]):
 		platform = platforms.front() if !platforms.is_empty() else null
 	)
@@ -34,18 +43,21 @@ func _process(delta: float) -> void:
 		position += platform.velocity * delta
 
 func _unhandled_input(event: InputEvent) -> void:
-	if is_moving:
+	if is_moving or GM.state != GM.State.PLAYING:
 		return
 	for direction in directions:
 		if event.is_action_pressed(direction):
 			move(direction)
 
-func get_destructor_value_from_tile_data() -> int:
+func get_tile_type() -> String:
 	if tile_map_layer == null or platform != null:
-		return 0
+		return ''
 	
-	var tile_data: TileData = tile_map_layer.get_cell_tile_data(tile_map_layer.local_to_map(position))
-	return tile_data.get_custom_data('destructor') if tile_data.has_custom_data('destructor') else 0
+	var tile_data: TileData = tile_map_layer.get_cell_tile_data(tile_map_layer.local_to_map(tile_map_layer.to_local(position)))
+	if tile_data == null or !tile_data.has_custom_data('type'):
+		return ''
+	else:
+		return tile_data.get_custom_data('type')
 
 func move(direction: String) -> void:
 	ray_cast_2d.target_position = directions[direction] * tile_size
@@ -65,10 +77,13 @@ func move(direction: String) -> void:
 		
 		await tween.finished
 		
-		destructable_2d.destruct(get_destructor_value_from_tile_data())
 		tween = null
 		is_moving = false
 		sprite_2d.frame = 0
+		
+		match get_tile_type():
+			'water':
+				destructable_2d.destruct(1)
 
 func reset() -> void:
 	if tween != null:
@@ -78,3 +93,4 @@ func reset() -> void:
 		is_moving = false
 	position = spawn_position
 	sprite_2d_parent.look_at(self.position + directions.up)
+	sprite_2d.visible = true # this is set to false when the game is over/won
