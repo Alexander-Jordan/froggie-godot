@@ -13,7 +13,9 @@ config_version=5
 config/name="Frogger"
 run/main_scene="uid://4e0wub1b01en"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://52m8wxs1771b"
+config/icon="uid://c2wvcp3vaja7e"
+boot_splash/minimum_display_time=3000
 
 [autoload]
 
