@@ -1,8 +1,9 @@
 class_name Lilypad extends Node2D
 
 @onready var area_2d: Area2D = $Area2D
-@onready var frog_sprite_2d: Sprite2D = $frog_sprite_2d
 @onready var collision_shape_2d: CollisionShape2D = $StaticBody2D/CollisionShape2D
+@onready var frog_sprite_2d: Sprite2D = $frog_sprite_2d
+@onready var random_audio_player_2d: RandomAudioPlayer2D = $RandomAudioPlayer2D
 
 var occupied: bool = false:
 	set(o):
@@ -14,6 +15,7 @@ var occupied: bool = false:
 		if o:
 			GM.lilypad_reached.emit()
 			GM.frogs -= 1
+			random_audio_player_2d.play_random_audio_and_await_finished()
 
 func _ready() -> void:
 	area_2d.area_entered.connect(func(_area: Area2D): occupied = true)

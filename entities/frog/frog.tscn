@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://d16o63s23utck"]
+[gd_scene load_steps=10 format=3 uid="uid://d16o63s23utck"]
 
 [ext_resource type="Script" uid="uid://bdekectr7lnpr" path="res://entities/frog/frog.gd" id="1_udvsd"]
 [ext_resource type="Script" uid="uid://wvthhxshywf7" path="res://common/destruct/destructible_2d.gd" id="2_tqehi"]
 [ext_resource type="Texture2D" uid="uid://d1038v42c3gfi" path="res://entities/frog/frog_spritsheet.png" id="2_x5vxf"]
 [ext_resource type="Script" uid="uid://blkxx5b1jgcyn" path="res://common/platform/platform_detector.gd" id="3_ecp8e"]
+[ext_resource type="AudioStream" uid="uid://cq54nrlcirhwc" path="res://entities/frog/jump.wav" id="3_iog4a"]
+[ext_resource type="AudioStream" uid="uid://jpfyb8y2bg4h" path="res://entities/frog/water.wav" id="4_cc7yh"]
+[ext_resource type="Script" uid="uid://bdtjjje4n4emo" path="res://common/random_audio_player_2d.gd" id="6_lmoaf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_182fg"]
 size = Vector2(6, 5)
@@ -13,6 +16,8 @@ size = Vector2(6, 5)
 
 [node name="Frog" type="Node2D"]
 script = ExtResource("1_udvsd")
+audio_stream_jump = ExtResource("3_iog4a")
+audio_stream_water = ExtResource("4_cc7yh")
 
 [node name="Destructable2D" type="Area2D" parent="."]
 script = ExtResource("2_tqehi")
@@ -30,6 +35,11 @@ metadata/_custom_type_script = "uid://blkxx5b1jgcyn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlatformDetector"]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_jtj10")
+
+[node name="RandomAudioPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"sfx"
+script = ExtResource("6_lmoaf")
+metadata/_custom_type_script = "uid://bdtjjje4n4emo"
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 16)

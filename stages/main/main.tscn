@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=4 uid="uid://4e0wub1b01en"]
+[gd_scene load_steps=20 format=4 uid="uid://4e0wub1b01en"]
 
 [ext_resource type="Script" uid="uid://cgikt5vdhkago" path="res://common/destruct/destructor_2d.gd" id="1_3f6tk"]
+[ext_resource type="AudioStream" uid="uid://jusbdklcyjh7" path="res://assets/music/best-game-console-301284.mp3" id="1_17rgw"]
 [ext_resource type="PackedScene" uid="uid://d16o63s23utck" path="res://entities/frog/frog.tscn" id="1_60rri"]
 [ext_resource type="Script" uid="uid://vy5p8gyicui5" path="res://entities/log/log_spawner.gd" id="1_woy08"]
 [ext_resource type="PackedScene" uid="uid://b7btmjr06sn4f" path="res://entities/log/log_small.tscn" id="2_4vbm2"]
@@ -29,6 +30,11 @@ normal = Vector2(-1, 0)
 size = Vector2(32, 15)
 
 [node name="Main" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_17rgw")
+volume_db = -12.0
+autoplay = true
 
 [node name="boundaries" type="Node" parent="."]
 
