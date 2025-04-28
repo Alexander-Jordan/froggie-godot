@@ -1,2 +1,7 @@
-# frogger-godot
-Frogger made in Godot game engine
+# Frogger
+
+Frogger made in the Godot game engine.
+
+[![Itch.io](https://img.shields.io/badge/Itch-%23FF0B34.svg?style=for-the-badge&logo=Itch.io&logoColor=white)](https://brallex.itch.io/frogger)
+
+![splash_screen](./assets/splash_screen.png)
